@@ -47,6 +47,8 @@ import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import { Tab } from "@mui/material";
+import Patient from "examples/PatientInfo/Patient";
 
 const routes = [
   {
@@ -64,6 +66,14 @@ const routes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
     component: <Tables />,
+  },
+  {
+    type: "collapse",
+    name: "Patient Information",
+    key: "Patiend",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/patient",
+    component: <Patient />,
   },
   {
     type: "collapse",
