@@ -3,7 +3,6 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import { incomingRequestLoggerMiddleware } from "./middlewares";
 import applicationRoute from "./routes";
 import cors from "cors";
-
 const app: Application = express();
 
 /** Body parse middleware. */
