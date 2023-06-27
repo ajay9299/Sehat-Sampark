@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/dart/AppColors.dart';
+import '../../constants/dart/AppColors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
