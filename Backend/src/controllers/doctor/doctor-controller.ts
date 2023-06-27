@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import patientService from "../../services/patient/patient-service";
 import { jwtTokenGenerator } from "../../helper/jwt-token-generator";
-class PatientController {
+import doctorService from "../../services/doctor/doctor-service";
+import { PatientFormAttributes } from "../../models/patient-form-model";
+
+class DoctorController {
   /**
    *
    * @param req Express request object
@@ -14,9 +16,9 @@ class PatientController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
-      const aadharCardNumber: string = req.body.aadharCardNumber;
+      const doctorId: string = req.body.doctorId;
       const { success, message, status, error, data } =
-        await patientService.signIn(aadharCardNumber);
+        await doctorService.signIn(doctorId);
       if (success === false) {
         return res.status(status).json({ error });
       }
@@ -32,30 +34,29 @@ class PatientController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
-      const aadharCardNumber: string = req.body.aadharCardNumber;
+      const doctorId: string = req.body.doctorId;
       const otp: string = req.body.otp;
       const { success, message, status, error, data } =
-        await patientService.logIn(aadharCardNumber, otp);
+        await doctorService.logIn(doctorId, otp);
       if (success === false) {
         return res.status(status).json({ error });
       }
-      const jwtToken: string = jwtTokenGenerator(aadharCardNumber);
+      const jwtToken: string = jwtTokenGenerator(doctorId);
       return res.status(status).json({ message, data: { jwtToken } });
     } catch (error) {
       next(error);
     }
   }
 
-  async getPatientInfo(
+  async getDoctorInfo(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<Response | void> {
     try {
-      // const patientId: string = "999941057058";
-      const patientId: string = req.user.id;
+      const doctorId: string = req.user.id;
       const { success, message, status, error, data } =
-        await patientService.getPatientInfo(patientId);
+        await doctorService.getDoctorInfo(doctorId);
       if (success === false) {
         return res.status(status).json({ error });
       }
@@ -64,17 +65,17 @@ class PatientController {
       next(error);
     }
   }
-
-  async getPatientHealthHistory(
+  async consulatePatient(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<Response | void> {
     try {
-
-      const patientId: string = req.user.id;
+      const doctorId: string = req.user.id;
+      const formInfo: PatientFormAttributes = req.body;
+      formInfo.doctorId = doctorId;
       const { success, message, status, error, data } =
-        await patientService.getPatientHealthHistory(patientId);
+        await doctorService.consulatePatient(formInfo);
       if (success === false) {
         return res.status(status).json({ error });
       }
@@ -85,4 +86,4 @@ class PatientController {
   }
 }
 
-export default new PatientController();
+export default new DoctorController();

@@ -1,20 +1,20 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/db-connection"; // Replace with your Sequelize instance
 interface OtpAttributes {
-  aadharCardNumber: string;
+  uniqueId: string;
   mobileNumber: string;
   otp: string;
 }
 
 class Otp extends Model<OtpAttributes> implements OtpAttributes {
-  public aadharCardNumber!: string;
+  public uniqueId!: string;
   public mobileNumber!: string;
   public otp!: string;
 }
 
 Otp.init(
   {
-    aadharCardNumber: {
+    uniqueId: {
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,

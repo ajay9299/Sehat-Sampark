@@ -3,6 +3,8 @@ import { addharCardInfo } from "../../database/aadhar-card-info";
 import { generateOTP } from "../../helper/otp-generator";
 import Otp from "../../models/otp-model";
 import Patient from "../../models/patient-model";
+import PatientForm from "../../models/patient-form-model";
+import Doctor from "../../models/doctor-model";
 
 class PatientService {
   async signIn(aadharCardNumber: string) {
@@ -23,7 +25,7 @@ class PatientService {
     const otp: string = generateOTP();
     /**Save the generated otp*/
     await Otp.create({
-      aadharCardNumber: isValidAadharCard.uidNumber,
+      uniqueId: isValidAadharCard.uidNumber,
       mobileNumber: isValidAadharCard.phoneNumber,
       otp,
     });
@@ -43,36 +45,85 @@ class PatientService {
    * @param otp
    */
   async logIn(aadharCardNumber: string, otp: string) {
-    /**Find otp data based on aadharCard number*/
-    const isOtpPresent = await Otp.findByPk(aadharCardNumber);
-    if (!isOtpPresent || isOtpPresent.otp !== otp) {
+    try {
+      /**Find otp data based on aadharCard number*/
+      const isOtpPresent = await Otp.findByPk(aadharCardNumber);
+      if (!isOtpPresent || isOtpPresent.otp !== otp) {
+        return {
+          success: false,
+          status: 400,
+          error: "Invalid otp",
+        };
+      }
+
+      /**If aadharCard verified then we will receive patient info. */
+      const isValidAadharCard = addharCardInfo.find(
+        (info) => info.uidNumber === aadharCardNumber
+      );
+
+      /**Fetch patient info already present in db */
+      const isPatientAlreadyPresent = await Patient.findByPk(aadharCardNumber);
+
+      if (!isPatientAlreadyPresent) {
+        await Patient.create(isValidAadharCard);
+      }
+
+      await Otp.destroy({ where: { uniqueId: aadharCardNumber } });
+
       return {
-        success: false,
-        status: 400,
-        error: "Invalid otp",
+        success: true,
+        status: 200,
+        message: "Otp verified successfully 😁",
+        data: {},
       };
+    } catch (error) {
+      return { success: false, status: 500, error };
     }
-
-    /**If aadharCard verified then we will receive patient info. */
-    const isValidAadharCard = addharCardInfo.find(
-      (info) => info.uidNumber === aadharCardNumber
-    );
-
-    /**Fetch patient info already present in db */
-    const isPatientAlreadyPresent = await Patient.findByPk(aadharCardNumber);
-
-    if (!isPatientAlreadyPresent) {
-      await Patient.create(isValidAadharCard);
+  }
+  /**
+   *
+   * @param patientId logged in patientId
+   * @returns patientInfo by patientId
+   */
+  async getPatientInfo(patientId: string) {
+    try {
+      const patientInfo = await Patient.findByPk(patientId);
+      return {
+        success: true,
+        status: 200,
+        message: "PatientInfo by uuid",
+        data: { patientInfo },
+      };
+    } catch (error) {
+      return { success: false, status: 500, error };
     }
+  }
 
-    await Otp.destroy({ where: { aadharCardNumber: aadharCardNumber } });
-
-    return {
-      success: true,
-      status: 200,
-      message: "Otp verified successfully 😁",
-      data: { jwt: "123bksfuhsfkjsdnnsjdn" },
-    };
+  /**
+   *
+   * @param patientId logged in patientId
+   * @returns patient health history
+   */
+  async getPatientHealthHistory(patientId: string) {
+    try {
+      const patientInfo = await PatientForm.findAll({
+        where: { patientId },
+        include: [
+          {
+            model: Doctor,
+            attributes: ["doctorId", "name", "departmentId", "phoneNumber"], // Specify the desired attributes from the joined table
+          },
+        ],
+      });
+      return {
+        success: true,
+        status: 200,
+        message: "PatientInfo by uuid",
+        data: patientInfo,
+      };
+    } catch (error) {
+      return { success: false, status: 500, error };
+    }
   }
 }
 

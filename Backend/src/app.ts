@@ -3,7 +3,20 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import { incomingRequestLoggerMiddleware } from "./middlewares";
 import applicationRoute from "./routes";
 import cors from "cors";
+
 const app: Application = express();
+interface Error {
+  details?: any;
+}
+declare global {
+  namespace Express {
+    interface Request {
+      user: {
+        id: string;
+      };
+    }
+  }
+}
 
 /** Body parse middleware. */
 app.use(express.json());
@@ -27,6 +40,17 @@ app.use("*", (req: Request, res: Response) => {
 
 /**Handle global errors */
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+  if (error.details) {
+    const validationErrors: string[] = [];
+
+    error.details.forEach((error: any) => {
+      validationErrors.push(error.message);
+    });
+
+    return res
+      .status(400)
+      .json({ error: "Validation error", details: validationErrors });
+  }
   return res.status(500).json({ error });
 });
 

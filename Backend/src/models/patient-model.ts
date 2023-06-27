@@ -1,4 +1,4 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../database/db-connection"; // Replace with your Sequelize instance
 
 interface PatientAttributes {
