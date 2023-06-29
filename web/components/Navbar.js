@@ -26,7 +26,14 @@ const Navbar = ({ isDashboard }) => {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
           <form className="form-inline my-2 my-lg-0">
-            {}
+            {!isLogin && (
+              <button
+                className="btn btn-outline-danger my-2 my-sm-0 mr-3"
+                type="submit"
+              >
+                Help
+              </button>
+            )}
             {isLogin && (
               <button
                 className="btn btn-outline-danger my-2 my-sm-0 mr-3"

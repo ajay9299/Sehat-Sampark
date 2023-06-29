@@ -5,12 +5,15 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="container-fluid h-100">
+      <div className="container-fluid h-80">
         <div className="row h-100">
           {/* Left Section */}
-          <div className="col-md-6 d-flex align-items-stretch">
+          <div
+            className="col-md-6 d-flex align-items-stretch"
+            style={{ overflow: "hidden" }}
+          >
             <img
-              src="/doctor1.jpg" // Replace with your actual image source
+              src="/patient3.jpg" // Replace with your actual image source
               alt="Cover Image"
               className="img-fluid h-100"
             />
