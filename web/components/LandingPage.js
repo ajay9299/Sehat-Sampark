@@ -1,7 +1,14 @@
-import { signInDoctorService } from "@/services/doctor.service";
+import {
+  signInDoctorService,
+  verifyOtpfunctionality,
+} from "@/services/doctor.service";
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/router";
+import { Toast } from "react-bootstrap";
 
 const LandingPage = () => {
+  const router = useRouter();
+  const [showToast, setShowToast] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   const [doctorId, setDoctorId] = useState("");
   const [isOtpEntered, setIsOtpEntered] = useState(false);
@@ -18,9 +25,6 @@ const LandingPage = () => {
       otpInputsRef.current[index + 1].focus();
     }
   };
-  const handleVerifyOtp = () => {
-    const enteredOtp = otp.join("");
-  };
 
   const signInDoctor = async (e) => {
     e.preventDefault();
@@ -35,8 +39,50 @@ const LandingPage = () => {
     }
   };
 
+  const handleOtpAndVerify = async (e) => {
+    const data = {
+      doctorId: doctorId,
+      otp: otp.join(""),
+    };
+
+    try {
+      const output = await verifyOtpfunctionality(data);
+      if (output.status === 200) {
+        router.push("./dashboard");
+        setDoctorId("");
+        setIsSubmit(false);
+      } else {
+      }
+    } catch (error) {
+      setOtp(["", "", "", "", "", ""]);
+      setDoctorId("");
+      setIsSubmit(false);
+      setShowToast(true);
+      console.log(error);
+    }
+  };
+
   return (
     <>
+      <Toast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        delay={3000}
+        autohide
+        style={{
+          position: "fixed",
+          top: "0",
+          left: "50%",
+          transform: "translateX(-50%)",
+          backgroundColor: "red",
+          color: "white",
+        }}
+      >
+        <Toast.Header>
+          <strong className="me-auto">Wrong OTP</strong>
+        </Toast.Header>
+        <Toast.Body>Please try again.</Toast.Body>
+      </Toast>
       <div className="container-fluid h-100">
         <div className="row h-100">
           {/* Left Section */}
@@ -115,9 +161,10 @@ const LandingPage = () => {
                             />
                           ))}
                         </div>
+
                         <button
                           className="btn btn-outline-danger"
-                          onClick={handleVerifyOtp}
+                          onClick={handleOtpAndVerify}
                           style={{ marginTop: "10px", marginLeft: "8px" }}
                           disabled={!isOtpEntered}
                         >
