@@ -2,41 +2,60 @@ import { doctorInfo } from "../../database/doctor-info";
 import { generateOTP } from "../../helper/otp-generator";
 import Doctor from "../../models/doctor-model";
 import Otp from "../../models/otp-model";
+import { sendOTP, verifyOTP } from "../../helper/twilio-config";
 import PatientForm, {
   PatientFormAttributes,
 } from "../../models/patient-form-model";
 
 class DoctorService {
   async signIn(doctorId: string) {
-    /**Call doctorId verification api that will generate otp on linked phone number */
-    const isValidDoctorId = doctorInfo.find(
-      (info) => info.doctorId === doctorId
-    );
+    try {
+      /**Call doctorId verification api that will generate otp on linked phone number */
+      const isValidDoctorId = doctorInfo.find(
+        (info) => info.doctorId === doctorId
+      );
 
-    if (!isValidDoctorId) {
+      if (!isValidDoctorId) {
+        return {
+          success: false,
+          status: 400,
+          error: "Invalid DoctorId number",
+        };
+      }
+
+      /**Assume Otp will generate by DoctorId verification api */
+      const otp: string = generateOTP();
+      console.log(otp);
+
+      
+      /**Save the generated otp*/
+
+      const isOtp = await Otp.findByPk(isValidDoctorId.doctorId);
+
+      if (isOtp) {
+        isOtp.otp = otp;
+        await isOtp.save();
+      }else{
+        await Otp.create({
+          uniqueId: isValidDoctorId.doctorId,
+          mobileNumber: isValidDoctorId.phoneNumber,
+          otp,
+        });
+      }
+
+      if (isValidDoctorId.phoneNumber === "+917905455033") {
+        await sendOTP(isValidDoctorId.phoneNumber, otp);
+      }
+
       return {
-        success: false,
-        status: 400,
-        error: "Invalid DoctorId number",
+        success: true,
+        status: 200,
+        message: "Otp send to linked mobile number",
+        data: {},
       };
+    } catch (error) {
+      return { success: false, status: 500, error };
     }
-
-    /**Assume Otp will generate by DoctorId verification api */
-    const otp: string = generateOTP();
-    /**Save the generated otp*/
-    await Otp.create({
-      uniqueId: isValidDoctorId.doctorId,
-      mobileNumber: isValidDoctorId.phoneNumber,
-      otp,
-    });
-
-    console.log("Otp", otp);
-    return {
-      success: true,
-      status: 200,
-      message: "Otp send to linked mobile number",
-      data: {},
-    };
   }
 
   /**
@@ -101,7 +120,6 @@ class DoctorService {
 
   async consulatePatient(formData: PatientFormAttributes) {
     try {
-  
       const newlyCreatedForm = await PatientForm.create(formData);
       // form database operation
       return {

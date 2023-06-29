@@ -6,7 +6,7 @@ export const doctorInfo = [
     name: "Mohit",
     dob: "09-02-1999",
     gender: "M",
-    phoneNumber: "9828400256",
+    phoneNumber: "+917905455033",
     email: "mohit@gmail.com",
     state: "Rajasthan",
     district: "Kota",
