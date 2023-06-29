@@ -17,6 +17,8 @@ class DoctorController {
   ): Promise<Response | void> {
     try {
       const doctorId: string = req.body.doctorId;
+
+      console.log(">>>>>>>>>>>>", doctorId);
       const { success, message, status, error, data } =
         await doctorService.signIn(doctorId);
       if (success === false) {

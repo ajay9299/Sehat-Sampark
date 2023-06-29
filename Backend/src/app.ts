@@ -20,7 +20,6 @@ declare global {
 
 /** Body parse middleware. */
 app.use(express.json());
-
 /** Outgoing request logger middleware. */
 app.use(morgan("dev"));
 /** Incoming request logger middleware. */
