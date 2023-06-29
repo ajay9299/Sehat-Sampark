@@ -30,6 +30,7 @@ router.post(
  * Get patient profile information api.
  */
 router.get("/patient/myProfile", authVerify, patientController.getPatientInfo);
+
 /**
  * Get patient health history api.
  * */
@@ -37,6 +38,12 @@ router.get(
   "/patient/health/history",
   authVerify,
   patientController.getPatientHealthHistory
+);
+
+router.get(
+  "/patient/:patientId",
+  authVerify,
+  patientController.getPatientInfoByPatientId
 );
 
 export default router;

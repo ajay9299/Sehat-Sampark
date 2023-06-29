@@ -142,6 +142,28 @@ class PatientService {
       return { success: false, status: 500, error };
     }
   }
+
+  async getPatientInfoByPatientId(patientId: string) {
+    try {
+      let patientInfoByDb = await Patient.findByPk(patientId);
+      if (!patientInfoByDb) {
+        /**If aadharCard verified then we will receive patient info. */
+        const isValidAadharCard = addharCardInfo.find(
+          (info) => info.uidNumber === patientId
+        );
+        patientInfoByDb = await Patient.create(isValidAadharCard);
+      }
+      const { name, dob, gender, phoneNumber } = patientInfoByDb;
+      return {
+        success: true,
+        status: 200,
+        message: "PatientInfo by uuid",
+        data: { name, dob, gender, phoneNumber },
+      };
+    } catch (error) {
+      return { success: false, status: 500, error };
+    }
+  }
 }
 
 export default new PatientService();

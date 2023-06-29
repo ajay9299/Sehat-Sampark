@@ -71,10 +71,27 @@ class PatientController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
-
       const patientId: string = req.user.id;
       const { success, message, status, error, data } =
         await patientService.getPatientHealthHistory(patientId);
+      if (success === false) {
+        return res.status(status).json({ error });
+      }
+      return res.status(status).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getPatientInfoByPatientId(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const patientId: string = req.params.patientId as string;
+      const { success, message, status, error, data } =
+        await patientService.getPatientInfoByPatientId(patientId);
       if (success === false) {
         return res.status(status).json({ error });
       }
