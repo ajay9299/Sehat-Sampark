@@ -151,6 +151,16 @@ class PatientService {
         const isValidAadharCard = addharCardInfo.find(
           (info) => info.uidNumber === patientId
         );
+
+        if (!isValidAadharCard) {
+          return {
+            success: false,
+            status: 400,
+            error: "Invalid patientId",
+            data: {},
+          };
+        }
+
         patientInfoByDb = await Patient.create(isValidAadharCard);
       }
       const { name, dob, gender, phoneNumber } = patientInfoByDb;
