@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
-const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
-
+const Navbar = ({ isDashboard }) => {
+  const [isLogin, setIsLogin] = useState(isDashboard);
   return (
     <>
       <nav

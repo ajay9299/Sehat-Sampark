@@ -27,10 +27,8 @@ const LandingPage = () => {
     try {
       const apiResponse = await signInDoctorService(doctorId);
       if (apiResponse.status == 200) {
-        console.log("//////////////", apiResponse);
-        // setIsSubmit(true);
+        setIsSubmit(true);
       } else {
-        console.log(">>>>>>>>>>>>>>", apiResponse);
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +57,9 @@ const LandingPage = () => {
                   <div className="col-md-8">
                     <div className="card rounded">
                       <div className="card-body bg-light">
-                        <h4 className="card-title text-center mb-4">SignIn</h4>
+                        <h4 className="card-title text-center mb-4 text-danger">
+                          SignIn
+                        </h4>
                         <form>
                           <div className="form-group">
                             <label htmlFor="doctorId">Doctor ID</label>
