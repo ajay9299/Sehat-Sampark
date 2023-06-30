@@ -7,6 +7,7 @@ const Navbar = ({ isDashboard }) => {
 
   const handleLogoutfunctionality = () => {
     console.log("hello");
+    localStorage.clear();
     router.push("http://localhost:3000");
   };
   return (

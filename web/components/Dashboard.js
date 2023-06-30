@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import {
+  confirmPatientIdAndProceed,
+  bindDoctorDataInForm,
+} from "../services/patient.service";
 const schema = yup
   .object()
   .shape({
@@ -29,9 +32,24 @@ const Dashboard = () => {
   const router = useRouter();
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     localStorage.setItem("patientId", data.example);
-    console.log(data.example);
+    const tokenObtained = localStorage.getItem("token");
+    const patiendIdObtained = localStorage.getItem("patientId");
+
+    const op = await confirmPatientIdAndProceed(
+      tokenObtained,
+      patiendIdObtained
+    );
+
+    console.log(op);
+    if (op?.status === 200) {
+      localStorage.setItem(
+        "patientIdInformation",
+        JSON.stringify(op?.data?.data)
+      );
+      router.push("./consult");
+    }
   };
 
   return (
@@ -58,7 +76,7 @@ const Dashboard = () => {
                   <div className="card rounded">
                     <div className="card-body bg-light">
                       <h4 className="card-title text-center text-danger mb-4">
-                        Consulate Patient
+                        Consult Patient
                       </h4>
                       <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-group">
