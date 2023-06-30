@@ -47,7 +47,9 @@ const LandingPage = () => {
 
     try {
       const output = await verifyOtpfunctionality(data);
+      const token = output?.data?.data?.jwtToken;
       if (output.status === 200) {
+        localStorage.setItem("token", token);
         router.push("./dashboard");
         setDoctorId("");
         setIsSubmit(false);
