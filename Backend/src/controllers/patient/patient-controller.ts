@@ -100,6 +100,30 @@ class PatientController {
       next(error);
     }
   }
+
+  async updatePatientBasicInfo(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const patientId: string = req.user.id;
+      const { weight, height, bloodGroup } = req.body;
+      const { success, message, status, error, data } =
+        await patientService.updatePatientInfoService(
+          patientId,
+          weight,
+          height,
+          bloodGroup
+        );
+      if (success === false) {
+        return res.status(status).json({ error });
+      }
+      return res.status(status).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new PatientController();

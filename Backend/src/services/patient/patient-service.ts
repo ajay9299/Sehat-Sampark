@@ -174,6 +174,31 @@ class PatientService {
       return { success: false, status: 500, error };
     }
   }
+
+  async updatePatientInfoService(
+    patientId: string,
+    weight: string,
+    height: string,
+    bloodGroup: string
+  ) {
+    try {
+      const patientData = await Patient.findByPk(patientId);
+      if (patientData) {
+        patientData.weight = weight;
+        patientData.height = height;
+        patientData.bloodGroup = bloodGroup;
+        await patientData?.save();
+      }
+      return {
+        success: true,
+        status: 200,
+        message: "PatientInfo updated successfully",
+        data: {},
+      };
+    } catch (error) {
+      return { success: false, status: 500, error };
+    }
+  }
 }
 
 export default new PatientService();

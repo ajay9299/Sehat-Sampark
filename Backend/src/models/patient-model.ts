@@ -13,6 +13,9 @@ interface PatientAttributes {
   subDistrict: string;
   street: string;
   pinCode: string;
+  weight: string;
+  height: string;
+  bloodGroup: string;
 }
 
 class Patient extends Model<PatientAttributes> implements PatientAttributes {
@@ -27,6 +30,9 @@ class Patient extends Model<PatientAttributes> implements PatientAttributes {
   public subDistrict!: string;
   public street!: string;
   public pinCode!: string;
+  public weight!: string;
+  public height!: string;
+  public bloodGroup!: string;
 }
 
 Patient.init(
@@ -79,6 +85,18 @@ Patient.init(
     pinCode: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    weight: {
+      type: DataTypes.STRING,
+      defaultValue: "",
+    },
+    height: {
+      type: DataTypes.STRING,
+      defaultValue: "",
+    },
+    bloodGroup: {
+      type: DataTypes.STRING,
+      defaultValue: "",
     },
   },
   {

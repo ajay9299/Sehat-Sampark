@@ -11,6 +11,9 @@ export const addharCardInfo = [
     subDistrict: "Kota",
     street: "2-D-35 Mahaveer nagar extension",
     pinCode: "324009",
+    weight: "",
+    height: "",
+    bloodGroup: "",
   },
   {
     uidNumber: "667534131642",
@@ -24,6 +27,9 @@ export const addharCardInfo = [
     subDistrict: "KanpurNagar",
     street: "Kidwai nagar",
     pinCode: "208011",
+    weight: "",
+    height: "",
+    bloodGroup: "",
   },
   {
     uidNumber: "667527131642",
@@ -37,5 +43,8 @@ export const addharCardInfo = [
     subDistrict: "Jaipur",
     street: "Johari Bazaar",
     pinCode: "302003",
+    weight: "",
+    height: "",
+    bloodGroup: "",
   },
 ];

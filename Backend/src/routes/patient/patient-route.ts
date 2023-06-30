@@ -40,10 +40,15 @@ router.get(
   patientController.getPatientHealthHistory
 );
 
+/**
+ * Doctor can access patient basicInfo using patientId
+ */
 router.get(
   "/patient/:patientId",
   authVerify,
   patientController.getPatientInfoByPatientId
 );
+
+router.patch("/patient", authVerify, patientController.updatePatientBasicInfo);
 
 export default router;
