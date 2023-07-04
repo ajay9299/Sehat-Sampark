@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dashboard from "../../components/Dashboard";
 import Navbar from "@/components/Navbar";
+import { useRouter } from "next/router";
 
 const DashboardPage = () => {
+  const router = useRouter();
+  const [isShow, setIsShow] = useState(false);
+  useEffect(() => {
+    const tokenObtained = localStorage.getItem("token");
+    if (!tokenObtained) {
+      router.replace("/");
+    } else {
+      setIsShow(true);
+    }
+  }, []);
   return (
     <>
-      <Navbar isDashboard={true} />
-      <Dashboard />
+      {isShow && (
+        <>
+          <Navbar isDashboard={true} />
+          <Dashboard />
+        </>
+      )}
     </>
   );
 };

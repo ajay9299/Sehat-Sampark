@@ -38,3 +38,37 @@ export const verifyOtpfunctionality = async (data) => {
     console.log(error);
   }
 };
+
+export const getDoctorProfile = async (token) => {
+  try {
+    console.log("???????????token", token);
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "http://localhost:3001/v1/api/doctor/myProfile",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return await axios.request(config);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPatientConsultHistory = async (token, patientId) => {
+  try {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: `http://localhost:3001/v1/api/doctor/${patientId}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    return await axios.request(config);
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -30,42 +30,10 @@ export const bindDoctorDataInForm = async (token) => {
 };
 
 export const patientInformationBindWithForm = async (data, token) => {
-  // const dataaa = {
-  //   patientId: data.patientId,
-  //   symptoms: data.symptoms,
-  //   durationOfSymptoms: data.durationOfSymptoms,
-  //   physicalExaminationFindings: data.physicalExaminationFindings,
-  //   medicationList: [
-  //     {
-  //       medicationName: "Medicine A",
-  //       dosage: "10mg",
-  //       frequency: "Twice a day",
-  //       duration: "1 week",
-  //     },
-  //     {
-  //       medicationName: "Medicine B",
-  //       dosage: "5mg",
-  //       frequency: "Once a day",
-  //       duration: "2 weeks",
-  //     },
-  //   ],
-  //   recommendedTests: [
-  //     {
-  //       testName: "Blood test",
-  //       reasonForTest: "To check for infection",
-  //     },
-  //     {
-  //       testName: "X-ray",
-  //       reasonForTest: "To examine the lungs",
-  //     },
-  //   ],
-  //   additionalNotes: data.additionalNotes,
-  // };
-
   try {
     let config = {
       method: "post",
-      url: "http://localhost:3001/v1/api/doctor/consulate",
+      url: "http://localhost:3001/v1/api/doctor/consult",
       headers: {
         Authorization: `Bearer ${token}`,
       },
