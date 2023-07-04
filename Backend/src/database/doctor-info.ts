@@ -1,6 +1,6 @@
 export const doctorInfo = [
   {
-    doctorId: "4005",
+    doctorId: "4P40V45L",
     departmentId: "123",
     departmentName: "Cardiologist",
     name: "Mohit",
@@ -15,7 +15,7 @@ export const doctorInfo = [
     pinCode: "324009",
   },
   {
-    doctorId: "3006",
+    doctorId: "5P70X05S",
     departmentId: "105",
     departmentName: "Dermatologist",
     name: "Vidit",
@@ -30,7 +30,7 @@ export const doctorInfo = [
     pinCode: "324009",
   },
   {
-    doctorId: "6013",
+    doctorId: "6Z3AQ5TD",
     departmentId: "103",
     departmentName: "Dentist",
     name: "Shivam",

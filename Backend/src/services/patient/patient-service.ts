@@ -1,4 +1,3 @@
-import { where } from "sequelize";
 import { addharCardInfo } from "../../database/aadhar-card-info";
 import { generateOTP } from "../../helper/otp-generator";
 import Otp from "../../models/otp-model";

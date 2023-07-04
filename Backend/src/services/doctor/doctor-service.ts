@@ -2,12 +2,20 @@ import { doctorInfo } from "../../database/doctor-info";
 import { generateOTP } from "../../helper/otp-generator";
 import Doctor from "../../models/doctor-model";
 import Otp from "../../models/otp-model";
-import { sendOTP, verifyOTP } from "../../helper/twilio-config";
+import { sendOTP } from "../../helper/twilio-config";
 import PatientForm, {
   PatientFormAttributes,
 } from "../../models/patient-form-model";
 
+/**
+ * Doctor's related all api's Business logics.
+ */
 class DoctorService {
+  /**
+   *
+   * @param doctorId Doctor's uniqueId
+   * @returns Success response to client
+   */
   async signIn(doctorId: string) {
     try {
       /**Call doctorId verification api that will generate otp on linked phone number */
@@ -27,7 +35,6 @@ class DoctorService {
       const otp: string = generateOTP();
       console.log(otp);
 
-      
       /**Save the generated otp*/
 
       const isOtp = await Otp.findByPk(isValidDoctorId.doctorId);
@@ -35,7 +42,7 @@ class DoctorService {
       if (isOtp) {
         isOtp.otp = otp;
         await isOtp.save();
-      }else{
+      } else {
         await Otp.create({
           uniqueId: isValidDoctorId.doctorId,
           mobileNumber: isValidDoctorId.phoneNumber,
@@ -60,8 +67,8 @@ class DoctorService {
 
   /**
    *
-   * @param doctorId doctorId
-   * @param otp
+   * @param doctorId Doctor's uniqueId
+   * @param otp Otp sent on doctor's registered phoneNumber
    */
   async logIn(doctorId: string, otp: string) {
     try {
@@ -100,7 +107,6 @@ class DoctorService {
     }
   }
   /**
-   *
    * @param doctorId logged in doctorId
    * @returns DoctorInfo by doctorId
    */
@@ -118,6 +124,10 @@ class DoctorService {
     }
   }
 
+  /**
+   * @param formData Consult patient form details
+   * @returns Newly created form data
+   */
   async consulatePatient(formData: PatientFormAttributes) {
     try {
       const newlyCreatedForm = await PatientForm.create(formData);
@@ -127,6 +137,38 @@ class DoctorService {
         status: 200,
         message: "Form submit successfully",
         data: newlyCreatedForm,
+      };
+    } catch (error) {
+      return { success: false, status: 500, error };
+    }
+  }
+
+  /**
+   * @param doctorId logged doctor's Id
+   * @param patientId consult patient's Id
+   * @returns Patient old health history, If doctor's Id matched
+   */
+  async getPatientOldHistoryService(
+    doctorId: string,
+    patientId: string,
+    pageNumber: Number,
+    limit: Number
+  ) {
+    try {
+      const isPatientHistoryRelatedWithDoctor = await PatientForm.findAll({
+        where: {
+          patientId,
+          doctorId,
+        },
+        offset: 0,
+        limit: 10,
+      });
+
+      return {
+        success: true,
+        status: 200,
+        data: isPatientHistoryRelatedWithDoctor,
+        message: "Patient medical history related to doctorId",
       };
     } catch (error) {
       return { success: false, status: 500, error };

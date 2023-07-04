@@ -86,6 +86,34 @@ class DoctorController {
       next(error);
     }
   }
+
+  async getPatientOldHistory(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const doctorId: string = req.user.id;
+      const patientId: string = req.params.patientId;
+      const pageNumber: Number = req.query.pageNumber
+        ? Number(req.query.pageNumber)
+        : 1;
+      const limit: Number = req.query.limit ? Number(req.query.limit) : 10;
+      const { success, message, status, error, data } =
+        await doctorService.getPatientOldHistoryService(
+          doctorId,
+          patientId,
+          pageNumber,
+          limit
+        );
+      if (success === false) {
+        return res.status(status).json({ error });
+      }
+      return res.status(status).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new DoctorController();

@@ -33,8 +33,17 @@ router.post(
 router.get("/doctor/myProfile", authVerify, doctorController.getDoctorInfo);
 
 /**
- * Consulating the patient api.
+ * Consult the patient api.
  */
-router.post("/doctor/consulate",authVerify,doctorController.consulatePatient)
+router.post("/doctor/consult", authVerify, doctorController.consulatePatient);
+
+/**
+ * Check patient history
+ */
+router.get(
+  "/doctor/:patientId",
+  authVerify,
+  doctorController.getPatientOldHistory
+);
 
 export default router;
