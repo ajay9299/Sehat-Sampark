@@ -5,6 +5,10 @@ import 'package:sehat_sampark/core/constants/AppColors.dart';
 import 'package:sehat_sampark/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sehat_sampark/features/auth/presentation/bloc/auth_event.dart';
 import 'package:sehat_sampark/features/auth/presentation/bloc/auth_state.dart';
+import 'package:sehat_sampark/features/profile/data/repository/user_repository.dart';
+import 'package:sehat_sampark/features/profile/presentation/bloc/user_bloc.dart';
+import 'package:sehat_sampark/features/profile/presentation/bloc/user_event.dart';
+import 'package:sehat_sampark/features/profile/presentation/profile_screen.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key, required this.uniqueId, required this.authBloc});
@@ -20,9 +24,10 @@ class _OTPScreenState extends State<OTPScreen> {
   //String text = '';
   final TextEditingController _otpController = TextEditingController();
   String currentText = "";
+  final UserBloc userBloc = UserBloc(UserRepository());
 
   void _verifyOTP(BuildContext context, String otp) {
-    widget.authBloc.add(VerifyOtpEvent(widget.uniqueId, otp));
+    widget.authBloc.add(VerifyOtpEvent(widget.uniqueId, otp, userBloc));
   }
 
   @override
@@ -39,6 +44,9 @@ class _OTPScreenState extends State<OTPScreen> {
         listener: (context, state) {
           if (state is AuthOtpVerificationSuccess) {
             debugPrint("Successful verification");
+            final UserBloc userBloc = UserBloc(UserRepository());
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => const UserProfileScreen()));
           } else if (state is AuthErrorState) {
             showDialog(
               context: context,

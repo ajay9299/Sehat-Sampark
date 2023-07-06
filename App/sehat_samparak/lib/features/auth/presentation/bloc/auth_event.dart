@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:sehat_sampark/features/profile/presentation/bloc/user_bloc.dart';
 
 abstract class AuthEvent extends Equatable {
   const AuthEvent();
@@ -19,8 +20,9 @@ class VerifyUniqueIdEvent extends AuthEvent {
 class VerifyOtpEvent extends AuthEvent {
   final String uniqueId;
   final String otp;
+  final UserBloc userBloc;
 
-  const VerifyOtpEvent(this.uniqueId, this.otp);
+  const VerifyOtpEvent(this.uniqueId, this.otp, this.userBloc);
 
   @override
   List<Object> get props => [uniqueId, otp];

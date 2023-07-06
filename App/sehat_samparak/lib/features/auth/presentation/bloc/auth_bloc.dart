@@ -6,9 +6,10 @@ import 'package:sehat_sampark/features/auth/data/repository/auth_repository.dart
 import 'package:sehat_sampark/features/auth/data/repository/session_repository.dart';
 import 'package:sehat_sampark/features/auth/presentation/bloc/auth_event.dart';
 import 'package:sehat_sampark/features/auth/presentation/bloc/auth_state.dart';
+import 'package:sehat_sampark/features/profile/presentation/bloc/user_event.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final UserRepository authRepository;
+  final AuthRepository authRepository;
   final SessionManager sessionManager;
 
   AuthBloc(this.authRepository, this.sessionManager) : super(AuthInitialState()) {
@@ -22,7 +23,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     if (event is VerifyUniqueIdEvent) {
       emit(AuthLoadingState());
-
       try {
         final response = await authRepository.verifyUniqueId(event.uniqueId);
         if (response.statusCode == 200) {
@@ -52,7 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           final token = jsonResponse["data"]['jwtToken'];
 
           await sessionManager.saveToken(token);
-          emit(AuthOtpVerificationSuccess(event.otp));
+          emit(AuthOtpVerificationSuccess(event.otp, token, event.userBloc));
         }
       } catch (e) {
         emit(AuthErrorState('OTP verification failed: ${e.toString()}'));

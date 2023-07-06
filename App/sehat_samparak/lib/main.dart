@@ -4,6 +4,8 @@ import 'package:sehat_sampark/features/auth/data/repository/auth_repository.dart
 import 'package:sehat_sampark/features/auth/data/repository/session_repository.dart';
 import 'package:sehat_sampark/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sehat_sampark/features/auth/presentation/login_screen.dart';
+import 'package:sehat_sampark/features/profile/data/repository/user_repository.dart';
+import 'package:sehat_sampark/features/profile/presentation/bloc/user_bloc.dart';
 import 'package:sehat_sampark/features/profile/presentation/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,34 +21,40 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(create: (_) => AuthBloc(UserRepository(), SessionManager()),)
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc(AuthRepository(), SessionManager()),
+        ),
+        BlocProvider<UserBloc>(
+          create: (_) => UserBloc(UserRepository()),
+        ),
       ],
       child: MaterialApp(
-        title: 'Sehat Samparak',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        // home: const MyHomePage(title: 'Sehat Samparak'),
-        home: FutureBuilder<SharedPreferences>(
-          future: SharedPreferences.getInstance(),
-          builder: (context, AsyncSnapshot<SharedPreferences> snapshot) {
-            if (snapshot.hasData) {
-              final SharedPreferences prefs = snapshot.data!;
-              if (prefs.containsKey('user-token')) {
-                // Token is present, navigate to Profile Screen
-                return const UserProfileScreen();
+          title: 'Sehat Samparak',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          // home: const MyHomePage(title: 'Sehat Samparak'),
+          home: FutureBuilder<SharedPreferences>(
+            future: SharedPreferences.getInstance(),
+            builder: (context, AsyncSnapshot<SharedPreferences> snapshot) {
+              if (snapshot.hasData) {
+                final SharedPreferences prefs = snapshot.data!;
+                if (prefs.containsKey('user-token')) {
+                  // Token is present, navigate to Profile Screen
+                  return const UserProfileScreen();
+                } else {
+                  // Token is not present, navigate to Login Screen
+                  return const LoginScreen();
+                }
               } else {
-                // Token is not present, navigate to Login Screen
-                return const LoginScreen();
+                return const Scaffold(
+                  body: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
               }
-            } else {
-              return const Scaffold(
-                body: Center(child: CircularProgressIndicator(),),
-              );
-            }
-          },
-        )
-      ),
+            },
+          )),
     );
   }
 }
@@ -60,7 +68,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
