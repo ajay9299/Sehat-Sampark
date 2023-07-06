@@ -17,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final AuthBloc authBloc = AuthBloc(UserRepository(), SessionManager());
+  final AuthBloc authBloc = AuthBloc(AuthRepository(), SessionManager());
 
   void _sendOTP(BuildContext context, String uniqueId) {
     final uniqueID = uniqueId.trim();

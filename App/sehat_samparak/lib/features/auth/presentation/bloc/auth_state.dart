@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:sehat_sampark/features/profile/presentation/bloc/user_bloc.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -29,8 +30,11 @@ class AuthErrorState extends AuthState {
 
 class AuthOtpVerificationSuccess extends AuthState {
   final String otp;
+  final String token;
+  final UserBloc userBloc;
+  //event.userBloc.add(UserProfileEvent(token));
 
-  const AuthOtpVerificationSuccess(this.otp);
+  const AuthOtpVerificationSuccess(this.otp, this.token, this.userBloc);
 
   @override
   List<Object> get props => [otp];

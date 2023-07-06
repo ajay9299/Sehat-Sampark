@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:sehat_sampark/core/constants/api_constant.dart';
 import 'package:sehat_sampark/features/auth/data/DTO/auth_response.dart';
 
-class UserRepository {
+class AuthRepository {
   final String signInUrl = ApiConstant.signIn;
   final String verifyOtpUrl = ApiConstant.verifyOtp;
 
