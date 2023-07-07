@@ -1,7 +1,9 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
 
 const HelpSection = () => {
   const router = useRouter();
@@ -40,31 +42,32 @@ const HelpSection = () => {
       answer:
         "Doctor can consult a patient and can see the previous history between doctor and patient based on both unique identification.",
     },
+    {
+      question: "Not getting otp",
+      answer:
+        "Doctor can consult a patient and can see the previous history between doctor and patient based on both unique identification.",
+    },
   ];
 
   return (
     <>
       <Navbar isDashboard={isLogin} />
-      <Container style={{ width: "80%" }}>
-        <h1 style={{ textAlign: "center" }}>Help Section</h1>
+      <Container className="w-80%">
+        <h1 style={{ textAlign: "center", color: "grey" }}>Help Section</h1>
         {faqs.map((faq, index) => (
-          <Card key={index}>
-            <Card.Header>
-              <Button
-                variant="link"
-                onClick={() => handleAccordionToggle(index)}
-                aria-expanded={activeIndex === index}
-                aria-controls={`faq-${index}`}
-              >
-                {faq.question}
-              </Button>
-            </Card.Header>
-            {activeIndex === index && (
-              <Card.Body id={`faq-${index}`} className="ml-3">{faq.answer}</Card.Body>
-            )}
-          </Card>
+          <Accordion key={index}>
+            <Accordion.Item eventKey={index + 1}>
+              <Accordion.Header>
+                <span style={{ color: "red" }}>
+                  {index + 1}. {faq?.question}
+                </span>
+              </Accordion.Header>
+              <Accordion.Body>{faq?.answer}</Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         ))}
       </Container>
+      <Footer />
     </>
   );
 };

@@ -9,6 +9,7 @@ import {
 } from "../../services/patient.service.js";
 import { useRouter } from "next/router.js";
 import SpinnerLoader from "@/components/Spinner.js";
+import Footer from "@/components/Footer.js";
 
 const PrescriptionForm = () => {
   ///get items from local storage
@@ -478,6 +479,7 @@ const PrescriptionForm = () => {
           )}
         </>
       )}
+      <Footer />
     </>
   );
 };

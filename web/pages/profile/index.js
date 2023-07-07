@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SpinnerLoader from "@/components/Spinner";
 import { getDoctorProfile } from "@/services/doctor.service";
@@ -116,6 +117,7 @@ const ProfilePage = () => {
                     </Col>
                   </Row>
                 </Container>
+                <Footer />
               </>
             )
           )}

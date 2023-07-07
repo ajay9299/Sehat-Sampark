@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Dashboard from "../../components/Dashboard";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/router";
+import Footer from "@/components/Footer";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ const DashboardPage = () => {
         <>
           <Navbar isDashboard={true} />
           <Dashboard />
+          <Footer />
         </>
       )}
     </>

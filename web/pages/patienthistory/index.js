@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SpinnerLoader from "@/components/Spinner";
 import { getPatientConsultHistory } from "@/services/doctor.service";
@@ -137,6 +138,7 @@ const PatientHistory = () => {
                 </Col>
               </Row>
             </Container>
+            <Footer />
           </>
         )
       )}
