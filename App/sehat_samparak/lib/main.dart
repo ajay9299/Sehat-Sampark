@@ -5,6 +5,7 @@ import 'package:sehat_sampark/features/auth/data/repository/session_repository.d
 import 'package:sehat_sampark/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:sehat_sampark/features/auth/presentation/login_screen.dart';
 import 'package:sehat_sampark/features/profile/data/repository/user_repository.dart';
+import 'package:sehat_sampark/features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
 import 'package:sehat_sampark/features/profile/presentation/bloc/user_bloc.dart';
 import 'package:sehat_sampark/features/profile/presentation/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<UserBloc>(
           create: (_) => UserBloc(UserRepository()),
+        ),
+        BlocProvider<EditProfileBloc>(
+          create: (_) => EditProfileBloc(UserRepository()),
         ),
       ],
       child: MaterialApp(

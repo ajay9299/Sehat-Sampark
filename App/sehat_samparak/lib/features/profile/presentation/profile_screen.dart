@@ -4,6 +4,7 @@ import 'package:sehat_sampark/core/constants/AppColors.dart';
 import 'package:sehat_sampark/features/profile/presentation/bloc/user_bloc.dart';
 import 'package:sehat_sampark/features/profile/presentation/bloc/user_event.dart';
 import 'package:sehat_sampark/features/profile/presentation/bloc/user_state.dart';
+import 'package:sehat_sampark/features/profile/presentation/edit_profile_screen.dart';
 import 'package:sehat_sampark/features/profile/presentation/widget/age_calculator_widget.dart';
 
 class UserProfileScreen extends StatefulWidget {
@@ -30,12 +31,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       appBar: AppBar(
         title: const Text(
           'Profile',
-          style: TextStyle(
-            color: Colors.black,
-          ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.redAccent,
+        elevation: 0,
       ),
       body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
         if (state is UserSuccessState) {
@@ -61,8 +60,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const CircleAvatar(
-                              //backgroundImage: const NetworkImage(''),
-                              radius: 50,
+                              backgroundColor: Colors.white,
+                              radius: 44,
+                              child: Icon(
+                                Icons.person,
+                                size: 50,
+                                color: Colors.black,
+                              ),
                             ),
                             const SizedBox(
                               height: 30,
@@ -111,14 +115,27 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             decoration:
                                                 TextDecoration.underline,
                                             fontSize: 18,
+                                            color: AppColors.primaryColor,
                                           ),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (_) => EditProfileScreen(
+                                                height: state.user.height!,
+                                                weight: state.user.weight!,
+                                                bloodGroup:
+                                                    state.user.bloodGroup!,
+                                              ),
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
-                                  const Padding(
-                                    padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(8, 0, 8, 8),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -126,7 +143,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                         Expanded(
                                           child: Column(
                                             children: [
-                                              Text(
+                                              const Text(
                                                 'Height(in ft)',
                                                 style: TextStyle(
                                                   color: Colors.redAccent,
@@ -134,12 +151,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                               Text(
-                                                '6',
-                                                style: TextStyle(
+                                                state.user.height ?? "-",
+                                                style: const TextStyle(
                                                   fontSize: 18,
                                                   color: Colors.pinkAccent,
                                                 ),
@@ -150,7 +167,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                         Expanded(
                                           child: Column(
                                             children: <Widget>[
-                                              Text(
+                                              const Text(
                                                 "Weight",
                                                 style: TextStyle(
                                                   color: Colors.redAccent,
@@ -158,12 +175,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 5.0,
                                               ),
                                               Text(
-                                                "65",
-                                                style: TextStyle(
+                                                state.user.weight ?? "-",
+                                                style: const TextStyle(
                                                   fontSize: 18.0,
                                                   color: Colors.pinkAccent,
                                                 ),
@@ -174,7 +191,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                         Expanded(
                                           child: Column(
                                             children: <Widget>[
-                                              Text(
+                                              const Text(
                                                 "Blood Group",
                                                 style: TextStyle(
                                                   color: Colors.redAccent,
@@ -182,12 +199,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 5.0,
                                               ),
                                               Text(
-                                                "AB+",
-                                                style: TextStyle(
+                                                state.user.bloodGroup ?? "-",
+                                                style: const TextStyle(
                                                   fontSize: 18.0,
                                                   color: Colors.pinkAccent,
                                                 ),
