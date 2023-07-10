@@ -8,6 +8,8 @@ import 'package:sehat_sampark/features/profile/data/repository/user_repository.d
 import 'package:sehat_sampark/features/profile/presentation/bloc/edit_profile/edit_profile_bloc.dart';
 import 'package:sehat_sampark/features/profile/presentation/bloc/user_bloc.dart';
 import 'package:sehat_sampark/features/profile/presentation/profile_screen.dart';
+import 'package:sehat_sampark/features/userHistory/data/repository/medical_history_repository.dart';
+import 'package:sehat_sampark/features/userHistory/presentation/bloc/consultation_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -30,6 +32,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<EditProfileBloc>(
           create: (_) => EditProfileBloc(UserRepository()),
+        ),
+        BlocProvider<ConsultationBloc>(
+          create: (_) => ConsultationBloc(MedicalHistoryRepository()),
         ),
       ],
       child: MaterialApp(
