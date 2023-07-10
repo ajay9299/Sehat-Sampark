@@ -1,8 +1,8 @@
-# Sehat Sampark
+# <span style="color: red;">Sehat Sampark</span>
 
 Sehat Sampark is a web-based application for doctors to consult with patients and manage their medical records.
 
-## Features
+## <span style="color: red;">Features</span>
 
 - Doctor login using unique doctorId and OTP verification.
 - Consultation with patients using unique patientId.
@@ -11,7 +11,7 @@ Sehat Sampark is a web-based application for doctors to consult with patients an
 - Help section for guidance and support.
 - View previous consult history of patients.
 
-## Technologies Used
+## <span style="color: red;">Technologies Used</span>
 
 - Next.js: Frontend framework for building React applications.
 - Node.js: Backend runtime environment for server-side code.
@@ -21,13 +21,13 @@ Sehat Sampark is a web-based application for doctors to consult with patients an
 - HTML/CSS: Markup and styling for the web pages.
 - Bootstrap: CSS framework for responsive design.
 
-## Prerequisites
+## <span style="color: red;">Prerequisites</span>
 
 - Node.js installed on your machine.
 - AWS RDS MySQL database for storing data.
 - API keys and credentials (not provided in this repository).
 
-## Getting Started
+## <span style="color: red;">Getting Started</span>
 
 1. Clone the repository:
 
