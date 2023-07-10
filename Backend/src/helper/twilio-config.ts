@@ -11,7 +11,7 @@ const client = twilio(accountSid, authToken);
 export async function sendOTP(phoneNumber : string, otp: string ): Promise<void> {
     try {
       const message = await client.messages.create({
-        body: `Aapne Darna nhi h  ${otp}`,
+        body: `Please enter the OTP to login to Sehat Sampark application ${otp}`,
         to: phoneNumber,
         from: "+15416923106",
       });
