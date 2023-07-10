@@ -10,15 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs-node": "^4.8.0",
     "@types/twilio": "^3.19.3",
     "celebrate": "^15.0.1",
     "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.3.0",
     "morgan": "^1.10.0",
     "mysql2": "^3.3.5",
+    "scikit-learn": "^0.1.0",
     "sequelize": "^6.32.0",
     "sequelize-typescript": "^2.1.5",
     "ts-node-dev": "^2.0.0"

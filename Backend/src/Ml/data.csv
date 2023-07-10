@@ -1,0 +1,105 @@
+Symptom1,Symptom2,Symptom3,Symptom4,Disease
+Chest Pain,Shortness of Breath,Fatigue,Dizziness,Heart Disease
+Rash,Itching,Sneezing,Watery Eyes,Allergies
+Abdominal Pain,Nausea,Vomiting,Fever,Appendicitis
+Headache,Dizziness,Blurred Vision,Neck Stiffness,Meningitis
+Fatigue,Cough,Sore Throat,Runny Nose,Common Cold
+Chest Pain,Shortness of Breath,Palpitations,Dizziness,Panic Attack
+Rash,Itching,Swelling,Redness,Hives
+Abdominal Pain,Nausea,Vomiting,Diarrhea,Gastroenteritis
+Headache,Dizziness,Confusion,Fever,Encephalitis
+Fever,Cough,Shortness of Breath,Fatigue,Pneumonia
+Chest Pain,Shortness of Breath,Weakness,Fatigue,Heart Failure
+Rash,Itching,Joint Pain,Fever,Lupus
+Abdominal Pain,Nausea,Vomiting,Yellowing of Skin,Jaundice
+Headache,Dizziness,Blurred Vision,Numbness,Migraine
+Fever,Cough,Runny Nose,Sore Throat,Influenza
+Chest Pain,Shortness of Breath,Coughing up Blood,Fatigue,Lung Cancer
+Rash,Itching,Blistering,Sunburn,Sunburn
+Abdominal Pain,Nausea,Vomiting,Indigestion,Gastritis
+Headache,Dizziness,Nausea,Sensitivity to Light,Migraine
+Fever,Cough,Fatigue,Joint Pain,Dengue Fever
+Chest Pain,Shortness of Breath,Sweating,Nausea,Angina
+Rash,Itching,Swollen Lymph Nodes,Fever,Mononucleosis
+Abdominal Pain,Nausea,Vomiting,Bloating,Gastric Ulcer
+Headache,Dizziness,Memory Loss,Seizures,Epilepsy
+Fever,Cough,Difficulty Breathing,Chest Tightness,Asthma
+Chest Pain,Shortness of Breath,Heartburn,Acid Reflux
+Rash,Itching,Hair Loss,Fatigue,Alopecia
+Abdominal Pain,Nausea,Vomiting,Fever,Food Poisoning
+Headache,Dizziness,Stiff Neck,Fever,West Nile Virus
+Fever,Cough,Joint Swelling,Rash,Lyme Disease
+Chest Pain,Shortness of Breath,Cough,Fatigue,Bronchitis
+Rash,Itching,Red Eyes,Fever,Measles
+Abdominal Pain,Nausea,Vomiting,Back Pain,Kidney Stones
+Headache,Dizziness,Vomiting,Sensitivity to Sound,Vertigo
+Fever,Cough,Diarrhea,Abdominal Pain,Gastroenteritis
+Chest Pain,Shortness of Breath,Fatigue,Heart Attack
+Rash,Itching,Skin Lesions,Fever,Chickenpox
+Abdominal Pain,Nausea,Vomiting,Weight Loss,Peptic Ulcer
+Headache,Dizziness,Confusion,Weakness,Stroke
+Fever,Cough,Joint Pain,Swollen Glands,Infectious Mononucleosis
+Chest Pain,Shortness of Breath,Fatigue,Anxiety Disorder
+Rash,Itching,Swollen Joints,Fever,Rheumatoid Arthritis
+Abdominal Pain,Nausea,Vomiting,Constipation,Appendicitis
+Headache,Dizziness,Sensitivity to Smell,Sinusitis
+Fever,Cough,Fatigue,Chills,Common Cold
+Chest Pain,Shortness of Breath,Dizziness,Heart Palpitations
+Rash,Itching,Skin Discoloration,Fever,Eczema
+Abdominal Pain,Nausea,Vomiting,Abdominal Bloating,Irritable Bowel Syndrome
+Headache,Dizziness,Memory Problems,Difficulty Concentrating,Concussion
+Fever,Cough,Difficulty Swallowing,Sore Throat,Strep Throat
+Chest Pain,Shortness of Breath,Coughing,Bronchial Asthma
+Rash,Itching,Skin Peeling,Fever,Toxic Shock Syndrome
+Abdominal Pain,Nausea,Vomiting,Weight Gain,Pregnancy
+Headache,Dizziness,Light Sensitivity,Fatigue,Chronic Fatigue Syndrome
+Fever,Cough,Chest Congestion,Difficulty Breathing,Pneumonia
+Chest Pain,Shortness of Breath,Irregular Heartbeat,Cardiac Arrhythmia
+Rash,Itching,Skin Rash,Sore Throat,Scarlet Fever
+Abdominal Pain,Nausea,Vomiting,Blood in Stool,Colon Cancer
+Headache,Dizziness,Visual Disturbances,Muscle Weakness,Multiple Sclerosis
+Fever,Cough,Joint Inflammation,Fatigue,Rheumatic Fever
+Chest Pain,Shortness of Breath,Fatigue,Dry Cough,Pulmonary Fibrosis
+Rash,Itching,Blisters,Fever,Shingles
+Abdominal Pain,Nausea,Vomiting,Heartburn,Gastroesophageal Reflux Disease
+Headache,Dizziness,Nasal Congestion,Pressure in Face,Sinus Infection
+Fever,Cough,Joint Pain,Swollen Lymph Nodes,HIV/AIDS
+Chest Pain,Shortness of Breath,Fatigue,Coronary Artery Disease
+Rash,Itching,Skin Infection,Fever,Cellulitis
+Abdominal Pain,Nausea,Vomiting,Diarrhea,Food Allergy
+Headache,Dizziness,Memory Loss,Tremors,Parkinson's Disease
+Fever,Cough,Difficulty Breathing,Chest Pain,Tuberculosis
+Chest Pain,Shortness of Breath,Swelling in Legs,Fatigue,Chronic Kidney Disease
+Rash,Itching,Skin Thickening,Fatigue,Scleroderma
+Abdominal Pain,Nausea,Vomiting,Rectal Bleeding,Colitis
+Headache,Dizziness,Sensitivity to Light and Sound,Migraine with Aura
+Fever,Cough,Sweating,Fatigue,Typhoid Fever
+Chest Pain,Shortness of Breath,Chest Tightness,Fatigue,Asthma
+Rash,Itching,Skin Ulcers,Fever,Leprosy
+Abdominal Pain,Nausea,Vomiting,Blood in Urine,Kidney Infection
+Headache,Dizziness,Severe Neck Pain,Fever,Meningococcal Meningitis
+Fever,Cough,Abdominal Pain,Diarrhea,Gastrointestinal Infection
+Chest Pain,Shortness of Breath,Fatigue,Chest Pressure,Angina
+Rash,Itching,Hair Thinning,Fatigue,Hypothyroidism
+Abdominal Pain,Nausea,Vomiting,Weight Loss,Pancreatitis
+Headache,Dizziness,Blurred Vision,Weakness,Hypertension
+Fever,Cough,Joint Swelling,Butterfly Rash,Lupus
+Chest Pain,Shortness of Breath,Fatigue,Dizziness,Heart Disease
+Rash,Itching,Sneezing,Watery Eyes,Allergies
+Abdominal Pain,Nausea,Vomiting,Fever,Appendicitis
+Headache,Dizziness,Blurred Vision,Neck Stiffness,Meningitis
+Fatigue,Cough,Sore Throat,Runny Nose,Common Cold
+Chest Pain,Shortness of Breath,Palpitations,Dizziness,Panic Attack
+Rash,Itching,Swelling,Redness,Hives
+Abdominal Pain,Nausea,Vomiting,Diarrhea,Gastroenteritis
+Headache,Dizziness,Confusion,Fever,Encephalitis
+Fever,Cough,Shortness of Breath,Fatigue,Pneumonia
+Chest Pain,Shortness of Breath,Weakness,Fatigue,Heart Failure
+Rash,Itching,Joint Pain,Fever,Lupus
+Abdominal Pain,Nausea,Vomiting,Yellowing of Skin,Jaundice
+Headache,Dizziness,Blurred Vision,Numbness,Migraine
+Fever,Cough,Runny Nose,Sore Throat,Influenza
+Chest Pain,Shortness of Breath,Coughing up Blood,Fatigue,Lung Cancer
+Rash,Itching,Blistering,Sunburn,Sunburn
+Abdominal Pain,Nausea,Vomiting,Indigestion,Gastritis
+Headache,Dizziness,Nausea,Sensitivity to Light,Migraine

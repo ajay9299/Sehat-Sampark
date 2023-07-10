@@ -3,6 +3,7 @@ import { connectToDatabase } from "./database/db-connection";
 import app from "./app";
 import dotenv from "dotenv";
 import "./database/db-connection";
+import "../src/Ml/ml";
 dotenv.config();
 const PORT = 3001;
 
