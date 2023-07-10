@@ -51,4 +51,6 @@ router.get(
 
 router.patch("/patient", authVerify, patientController.updatePatientBasicInfo);
 
+router.get('/patient/consult/:consultId',authVerify,patientController.getConsultHistoryByConsultId)
+
 export default router;
