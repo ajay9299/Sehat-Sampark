@@ -32,5 +32,5 @@ Sehat Sampark is a web-based application for doctors to consult with patients an
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/{ajay9299}/sehat-sampark.git
+   git clone https://github.com/ajay9299/sehat-sampark.git
    ```
