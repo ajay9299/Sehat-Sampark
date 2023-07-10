@@ -124,6 +124,26 @@ class PatientController {
       next(error);
     }
   }
+
+  async getConsultHistoryByConsultId(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const patientId: string = req.user.id;
+      const consultId: string = req.params.consultId;
+
+      const { success, message, status, error, data } =
+        await patientService.getConsultHistoryByConsultId(Number(consultId));
+      if (success === false) {
+        return res.status(status).json({ error });
+      }
+      return res.status(status).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default new PatientController();

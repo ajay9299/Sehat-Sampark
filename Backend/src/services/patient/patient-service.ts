@@ -198,6 +198,20 @@ class PatientService {
       return { success: false, status: 500, error };
     }
   }
+
+  async getConsultHistoryByConsultId(consultId: number) {
+    try {
+      const patientData = await PatientForm.findByPk(consultId);
+      return {
+        success: true,
+        status: 200,
+        message: "PatientInfo updated successfully",
+        data: patientData,
+      };
+    } catch (error) {
+      return { success: false, status: 500, error };
+    }
+  }
 }
 
 export default new PatientService();
